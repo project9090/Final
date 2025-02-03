@@ -3,146 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Website with Hamburger Menu</title>
+    <title>Hamburger Menu</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to right, #d4fcd4, #b8e6b8); /* Light Green Gradient */
         }
 
-        header {
-            background: #2E8B57;
-            color: white;
-            padding: 15px;
-            text-align: center;
+        .menu-container {
             position: relative;
-        }
-
-        .menu-toggle {
-            display: none;
-            font-size: 24px;
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-            position: absolute;
-            right: 20px;
-            top: 15px;
-        }
-
-        nav {
-            text-align: center;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+            background-color: #333;
             display: flex;
-            justify-content: center;
-        }
-
-        nav ul li {
-            margin: 0 15px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-        }
-
-        .content {
-            text-align: center;
-            padding: 50px;
-        }
-
-        button {
+            justify-content: space-between;
+            align-items: center;
             padding: 10px 20px;
-            background: #2E8B57;
+        }
+
+        .menu-container .logo {
             color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .menu {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 50px;
+            right: 20px;
+            background-color: #333;
+            padding: 10px;
             border-radius: 5px;
         }
 
-        button:hover {
-            background: #206040;
-        }
-
-        footer {
-            background: #2E8B57;
+        .menu a {
             color: white;
-            text-align: center;
             padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            text-decoration: none;
+            display: block;
+            border-bottom: 1px solid #444;
         }
 
-        /* Responsive styles */
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
+        .menu a:hover {
+            background-color: #444;
+        }
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 25px;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 100%;
+            height: 5px;
+            background-color: white;
+        }
+
+        @media screen and (min-width: 768px) {
+            .hamburger {
+                display: none;
             }
 
-            nav ul {
-                display: none;
-                flex-direction: column;
-                background: #2E8B57;
-                position: absolute;
-                width: 100%;
-                top: 60px;
-                left: 0;
+            .menu {
+                display: flex;
+                position: static;
+                flex-direction: row;
+                background-color: transparent;
                 padding: 0;
             }
 
-            nav ul.show {
-                display: flex;
-            }
-
-            nav ul li {
-                text-align: center;
-                padding: 10px 0;
+            .menu a {
+                border: none;
+                margin: 0 15px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>My Website</h1>
-        <button class="menu-toggle">&#9776;</button>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <section class="content">
-        <h2>About Us</h2>
-        <p>This is a simple website template with a responsive hamburger menu.</p>
-        <button onclick="showMessage()">Click Me</button>
-    </section>
-
-    <footer>
-        <p>&copy; 2025 My Website. All rights reserved.</p>
-    </footer>
+    <div class="menu-container">
+        <div class="logo">My Website</div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="menu" id="menu">
+            <a href="home.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
 
     <script>
-        function showMessage() {
-            alert("Hello! Welcome to my website.");
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
         }
-
-        document.querySelector(".menu-toggle").addEventListener("click", function() {
-            document.querySelector("nav ul").classList.toggle("show");
-        });
     </script>
+
 </body>
 </html>
